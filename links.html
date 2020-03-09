@@ -2,12 +2,23 @@
 <html lang="en">
 <head>
     <title>Chris' Main Web Page</title>
+    <style>
+        a::before {
+        content: "\2646 click here ";
+        font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <ol>
-        <li><a href="tables.html">A bunch of tables</a></li>
-        <li><a href="#fit">A bunch of tables</a></li>
-        <li><a href="#coronavirus">A bunch of tables</a></li>
+        <li><a href="tables.html">A Bunch of Tables</a></li>
+        <li><a href="div_span.html">Click Here Diamonds!!!!</a></li>
+            <ul>
+                <li><a href="https://duckduckgo.com">A Search Browser</a></li>
+                <li><a href="https:/bing.com">A Search Browser</a></li>
+                <li><a href="https://google.com">A Search Browser</a></li>
+                <li><a href="https://yahoo.com">A Search Browser</a></li>
+            </ul>
     </ol>
     <h2 id="fit">The Fitnessgram Pacer Test</h2>
     <p>
@@ -24,5 +35,15 @@
         originated from an exotic animal market in Wuhan, China. It attacks the respiratory system and is very
         contagious.
     </p>
+    <form>
+        <div>
+            <input name="Country" list="countries" placeholder="Where Do You Live">
+            <datalist id="countries">
+                <option value="United States">
+                <option value="South Africa">
+                <option value="China">
+                <option value="Britain">
+        </div>
+    </form>
 </body>
 </html>
