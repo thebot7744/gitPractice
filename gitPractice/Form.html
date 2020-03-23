@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Geeglo Forms</title>
+        <style>
+            input[type=text] {
+            background-color: #7CEF4A;
+            }
+            input[type=password] {
+            background-color: #A3DF89;
+            }
+            input[type=number] {
+            background-color: #348E0D;
+            }
+            input[type=radio] {
+            background-color: #348E0D;
+            }
+            button {
+                width: 160px;
+                height: 100px;
+                font-size: 24px;
+                background-color: #E2FAD7;
+                border: 2px solid #C6C7C6;
+                margin: 30px;
+            }
+            button:hover {
+                width: 170px;
+                height: 110px;
+                margin: 27.5px;
+                font-size: 25.5px;
+
+        </style>
+    </head>
+    <body>
+        <h6>This information is confidential</h6>
+        <form>
+            <div>
+                <input type="text" placeholder="Full Name" name="Name">
+                <input type="password" placeholder="Password" name="Password">
+                <input type="number" placeholder="Age" name="Age">
+            </div>
+            <div>
+                Favorite colour?
+                <input name="colour" type="radio" value="red"> Red
+                <input name="colour" type="radio" value="blue"> Blue
+                <input name="colour" type="radio" value="green"> Green
+                <input name="colour" type="radio" value="other"> Other
+            </div>
+            <div>
+                <input name="Country" list="countries" placeholder="Country">
+                <datalist id="countries">
+                    <option value="United States">
+                    <option value="South Africa">
+                    <option value="China">
+                    <option value="Britain">
+            </div>
+            <button>Submit!</button>
+        </form>
+    </body>
+</html>
