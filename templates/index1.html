@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Is it My Birthday?</title>
+        <style>
+            body {
+                text-align: center;
+                font-family: Ariel, sans-serif;
+                font-size: 150px;
+            }
+            a::before {
+                content: "\1F388"
+            }
+            a::after {
+                content: "\1F388"
+            }
+        </style>
+    </head>
+    <body>
+        {% if new_year %}
+        <h2><a>Yay! It is my birthday!!!</a></h2>
+        {% else %}
+            <h2>No, it is not my birthday...</h2>
+        {% endif %}
+    </body>
+</html>

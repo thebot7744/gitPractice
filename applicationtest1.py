@@ -11,3 +11,4 @@ def hello():
 def hello_user(name):
     name = name.capitalize()
     return f"<h3>Hello, {name}!</h3>"
+
