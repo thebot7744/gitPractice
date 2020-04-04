@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="UTF-8">
+        <title>HTML "For Loops"</title>
+         <style>
+            body {
+                font-family: Ariel, sans-serif;
+            }
+            ul > li {
+                font-size: 20px;
+            </style>
+    </head>
+    <body>
+        <h1>Names</h1>
+
+        <ul>
+            {% for name in names %}
+                <li>{{name}}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

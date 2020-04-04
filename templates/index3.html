@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Homepage</title>
+        <style>
+            body {
+                font-family: Ariel, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Here is the homepage to my many flask projects.</h2>
+        <ol>
+            <li><a href="{{ url_for('index0') }}">Hi</a></li>
+            <li><a href="{{ url_for('bye') }}">Bye</a></li>
+            <li><a href="{{ url_for('index1') }}">Is it my birthday?</a></li>
+            <li><a href="{{ url_for('index2') }}">Some loops in HTML</a></li>
+        </ol>
+    </body>
+</html>
