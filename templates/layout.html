@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <style>
+            body {
+                font-family: Ariel, sans-serif;
+            }
+            {% block style %}
+            {% endblock %}
+        </style>
+    </head>
+    <body>
+        <h1>{% block heading %}{% endblock %}</h1>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

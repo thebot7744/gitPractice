@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block style %}
+    button {
+        width: 160px;
+        height: 100px;
+        font-size: 24px;
+        background-color: #E2FAD7;
+        border: 2px solid #C6C7C6;
+        margin: 30px;
+    }
+    button:hover {
+        width: 170px;
+        height: 110px;
+        margin: 27.5px;
+        font-size: 25.5px;
+    }
+{% endblock %}
+
+{% block title %}
+    My Website!
+{% endblock %}
+
+{% block heading %}
+    Hello
+{% endblock %}
+
+{% block body %}
+    <form action="{{ url_for('hello') }}" method="post">
+        <input type=text" name="name" placeholder="Enter Your Name">
+        <button>Submit</button>
+    </form>
+{% endblock %}
