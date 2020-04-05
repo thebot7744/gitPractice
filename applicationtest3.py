@@ -14,5 +14,6 @@ def hello():
         return "Please submit the form."
     else:
         name = request.form.get("name")
-        return render_template("index5.html", name=name)
+        names = name.capitalize()
+        return render_template("index5.html", name=names)
 
