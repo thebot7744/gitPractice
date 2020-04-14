@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Notes
+{% endblock %}
+
+{% block heading %}
+    Notes
+{% endblock %}
+
+{% block body %}
+    <h4>Type @delete to delete all your notes.</h4>
+    <ul>
+        <li>{{notes}}</li>
+    </ul>
+
+    <form action="{{ url_for('index') }}" method="post">
+        <input type=text" name="note" placeholder="Enter Your Note">
+        <button>Add Note</button>
+    </form>
+{% endblock %}
