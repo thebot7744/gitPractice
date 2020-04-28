@@ -1,0 +1,85 @@
+CREATE TABLE flights (
+	id INTEGER PRIMARY KEY,
+	origin VARCHAR NOT NULL,
+	destination VARCHAR NOT NULL,
+	duration INTEGER NOT NULL
+);
+INSERT INTO flights (origin, destination, duration) VALUES ('Newark', 'Paris', 14);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('ShangHai', 'New York', 25);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('Detroit', 'New Delhi', 21);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('Los Angeles', 'London', 14);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('Detroit', 'Berlin', 15);
+
+SELECT * FROM flights;
+
+SELECT origin, destination FROM flights;
+
+SELECT * FROM flights WHERE id = 3;
+
+SELECT * FROM flights WHERE duration > 20 AND origin = 'Detroit';
+
+SELECT origin, destination FROM flights WHERE duration > 20 OR origin = 'Detroit';
+
+SELECT AVG(duration) FROM flights WHERE destination = 'London';
+
+SELECT COUNT(*) FROM flights WHERE origin = 'Detroit';
+
+SELECT MIN(duration) FROM flights;
+
+SELECT SUM(duration) FROM flights;
+
+SELECT MAX(duration) FROM flights;
+
+SELECT * FROM flights LIMIT 2;
+
+SELECT * FROM flights WHERE origin IN ('Detroit', 'ShangHai');
+
+UPDATE flights SET duration = 17 WHERE origin = 'Detroit' AND destination = 'Berlin';
+
+DELETE FROM flights WHERE destination = 'Paris';
+
+SELECT * FROM flights WHERE origin LIKE '%a%';
+
+SELECT * FROM flights ORDER BY duration ASC LIMIT 3;
+
+SELECT * FROM flights ORDER BY duration DESC LIMIT 3;
+
+SELECT origin, COUNT(*) FROM flights GROUP BY origin;
+
+SELECT origin, COUNT(*) FROM flights GROUP BY origin HAVING COUNT(*) > 1;
+
+CREATE TABLE flightsid (
+	id INTEGER PRIMARY KEY,
+	origin_id INTEGER NOT NULL,
+	destination_id INTEGER NOT NULL,
+	duration INTEGER NOT NULL
+);
+
+CREATE TABLE passengers (
+	id INTEGER PRIMARY KEY,
+	name VARCHAR NOT NULL,
+	flight_id INTEGER REFERENCES flights
+);
+
+INSERT INTO passengers (name, flight_id) VALUES ('Alice', 1);
+INSERT INTO passengers (name, flight_id) VALUES ('Bob', 1);
+INSERT INTO passengers (name, flight_id) VALUES ('Charlie', 2);
+INSERT INTO passengers (name, flight_id) VALUES ('Dave', 2);
+INSERT INTO passengers (name, flight_id) VALUES ('Hazel', 3);
+INSERT INTO passengers (name, flight_id) VALUES ('Anna', 3);
+INSERT INTO passengers (name, flight_id) VALUES ('Erin', 4);
+INSERT INTO passengers (name, flight_id) VALUES ('Percy', 4);
+INSERT INTO passengers (name, flight_id) VALUES ('Frank', 5);
+INSERT INTO passengers (name, flight_id) VALUES ('Grace', 5);
+
+SELECT * FROM passengers WHERE name = 'Alice';
+
+SELECT * FROM flights WHERE id = 1;
+
+SELECT origin, destination, name FROM flights JOIN passengers ON passengers.flight_id = flights.id;
+
+SELECT origin, destination, name FROM flights LEFT JOIN passengers ON passengers.flight_id = flights.id;
