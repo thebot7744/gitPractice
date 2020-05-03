@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/christopherwang/base1.db" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><current_tab id="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="927"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="flights"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="flights" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk=""><sort><column index="2" mode="1"/></sort><column_widths/><filter_values/><display_formats/><hidden_columns/><plot_y_axes/></table><table schema="main" name="flightsid" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk=""><sort/><column_widths/><filter_values/><display_formats/><hidden_columns/><plot_y_axes/></table><table schema="main" name="passengers" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk=""><sort/><column_widths/><filter_values/><display_formats/><hidden_columns/><plot_y_axes/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE flights (
+	id INTEGER PRIMARY KEY, 
+	origin VARCHAR NOT NULL,	
+	destination VARCHAR NOT NULL, 
+	duration INTEGER NOT NULL
+);
+INSERT INTO flights (origin, destination, duration) VALUES ('Newark', 'Paris', 14);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('ShangHai', 'New York', 25);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('Detroit', 'New Delhi', 21);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('Los Angeles', 'London', 14);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('Detroit', 'Berlin', 15);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('Istanbul', 'Newark', 15);
+
+SELECT * FROM flights;
+
+SELECT origin, destination FROM flights;
+
+SELECT * FROM flights WHERE id = 3;
+
+SELECT * FROM flights WHERE duration &gt; 20 AND origin = 'Detroit';
+
+SELECT origin, destination FROM flights WHERE duration &gt; 20 OR origin = 'Detroit';
+
+SELECT AVG(duration) FROM flights WHERE destination = 'London';
+
+SELECT COUNT(*) FROM flights WHERE origin = 'Detroit';
+
+SELECT MIN(duration) FROM flights;
+
+SELECT SUM(duration) FROM flights;
+
+SELECT MAX(duration) FROM flights;
+
+SELECT * FROM flights LIMIT 2;
+
+SELECT * FROM flights WHERE origin IN ('Detroit', 'ShangHai');
+
+UPDATE flights SET duration = 17 WHERE origin = 'Detroit' AND destination = 'Berlin';
+
+DELETE FROM flights WHERE destination = 'Paris';
+
+SELECT * FROM flights WHERE origin LIKE '%a%';
+
+SELECT * FROM flights ORDER BY duration ASC LIMIT 3;
+
+SELECT * FROM flights ORDER BY duration DESC LIMIT 3;
+
+SELECT origin, COUNT(*) FROM flights GROUP BY origin;
+
+SELECT origin, COUNT(*) FROM flights GROUP BY origin HAVING COUNT(*) &gt; 1;
+
+CREATE TABLE flightsid (
+	id INTEGER PRIMARY KEY, 
+	origin_id INTEGER NOT NULL,	
+	destination_id INTEGER NOT NULL, 
+	duration INTEGER NOT NULL
+);
+
+CREATE TABLE passengers (
+	id INTEGER PRIMARY KEY, 
+	name VARCHAR NOT NULL,	
+	flight_id INTEGER REFERENCES flights
+);
+
+INSERT INTO passengers (name, flight_id) VALUES ('Alice', 1);
+INSERT INTO passengers (name, flight_id) VALUES ('Bob', 1);
+INSERT INTO passengers (name, flight_id) VALUES ('Charlie', 2);
+INSERT INTO passengers (name, flight_id) VALUES ('Dave', 2);
+INSERT INTO passengers (name, flight_id) VALUES ('Hazel', 3);
+INSERT INTO passengers (name, flight_id) VALUES ('Anna', 3);
+INSERT INTO passengers (name, flight_id) VALUES ('Erin', 4);
+INSERT INTO passengers (name, flight_id) VALUES ('Percy', 4);
+INSERT INTO passengers (name, flight_id) VALUES ('Frank', 5);
+INSERT INTO passengers (name, flight_id) VALUES ('Grace', 5);
+
+SELECT * FROM passengers WHERE name = 'Alice';
+
+SELECT * FROM flights WHERE id = 1;
+
+SELECT origin, destination, name FROM flights JOIN passengers ON passengers.flight_id = flights.id;
+
+SELECT origin, destination, name FROM flights LEFT JOIN passengers ON passengers.flight_id = flights.id;
+
+SELECT flight_id FROM passengers GROUP BY flight_id HAVING COUNT(*) &gt; 1;
+
+SELECT * FROM flights WHERE id IN (SELECT flight_id FROM passengers GROUP BY flight_id HAVING COUNT(*) &gt; 1);</sql><current_tab id="0"/></tab_sql></sqlb_project>
