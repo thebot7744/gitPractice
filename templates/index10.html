@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Flight Details
+{% endblock %}
+
+{% block body %}
+    <h1> Flight Details </h1>
+    {% for flight in flights %}
+        <div value="{{ flight.id }}">{{ flight.origin }} to {{ flight.destination }} is {{ flight.duration }} hours </div>
+    {% endfor %}
+
+    <form action="{{ url_for('holding_room') }}">
+        <div class=form-group">
+                <button class="btn btn-info">More</button>
+        </div>
+    </form>
+{% endblock %}

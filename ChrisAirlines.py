@@ -14,6 +14,26 @@ def index():
     flights = db.execute("SELECT * FROM flights").fetchall()
     return render_template("index7.html", flights=flights)
 
+@app.route("/flight_details")
+def display_all():
+    flights = db.execute("SELECT * FROM flights").fetchall()
+    return render_template("index10.html", flights=flights)
+
+@app.route("/passengers")
+def passengers():
+    password = str(request.form.get("password"))
+    if password == '123':
+        flights = db.execute("SELECT * FROM passengers").fetchall()
+        return render_template("index11.html", flights=flights)
+    else:
+        return render_template("index8.html", message="WRONG PASSWORD")
+
+@app.route("/holdingroom")
+def holding_room():
+    return render_template("index12.html")
+
+
+
 @app.route("/book", methods=["POST"])
 def book():
     name = request.form.get("name")

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Access Passenger Details
+{% endblock %}
+
+{% block body %}
+    <h1> Password </h1>
+    <form action="{{ url_for('passengers') }}">
+        <div class="form-group">
+            <input type="text" placeholder="Enter Password" class="form-control" name="password">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+
+{% endblock %}

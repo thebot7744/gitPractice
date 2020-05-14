@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    (Flight Attendant Only)
+{% endblock %}
+
+{% block body %}
+    <h1> Passenger Details </h1>
+    {% for flight in flights %}
+        <div>{{ flight.name }} is on flight {{ flight.flight_id }} </div>
+    {% endfor %}
+
+
+{% endblock %}
