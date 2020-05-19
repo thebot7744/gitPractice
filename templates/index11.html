@@ -9,6 +9,10 @@
     {% for flight in flights %}
         <div>{{ flight.name }} is on flight {{ flight.flight_id }} </div>
     {% endfor %}
-
+    <form action="{{ url_for('index') }}">
+        <div class=form-group">
+                <button class="btn btn-secondary">Back</button>
+        </div>
+    </form>
 
 {% endblock %}

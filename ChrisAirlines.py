@@ -21,8 +21,8 @@ def display_all():
 
 @app.route("/passengers")
 def passengers():
-    password = str(request.form.get("password"))
-    if password == '123':
+    password = str(request.args.get("password"))
+    if password == "123":
         flights = db.execute("SELECT * FROM passengers").fetchall()
         return render_template("index11.html", flights=flights)
     else:
