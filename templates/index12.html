@@ -6,7 +6,7 @@
 
 {% block body %}
     <h1> Password </h1>
-    <form action="{{ url_for('passengers') }}">
+    <form action="{{ url_for('passengers') }}", method="post">
         <div class="form-group">
             <input type="text" placeholder="Enter Password" class="form-control" name="password">
         </div>

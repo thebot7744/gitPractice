@@ -19,10 +19,12 @@ def display_all():
     flights = db.execute("SELECT * FROM flights").fetchall()
     return render_template("index10.html", flights=flights)
 
-@app.route("/passengers")
+@app.route("/passengers", methods=["POST", "GET"])
 def passengers():
-    password = str(request.args.get("password"))
-    if password == "123":
+    if request.method == "GET":
+        return render_template("index8.html", message="PLZ ENTER PASSWORD")
+    password = str(request.form.get("password"))
+    if password == "chris":
         flights = db.execute("SELECT * FROM passengers").fetchall()
         return render_template("index11.html", flights=flights)
     else:
