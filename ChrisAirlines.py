@@ -14,31 +14,11 @@ def index():
     flights = db.execute("SELECT * FROM flights").fetchall()
     return render_template("index7.html", flights=flights)
 
-@app.route("/flight_details")
-def display_all():
-    flights = db.execute("SELECT * FROM flights").fetchall()
-    return render_template("index10.html", flights=flights)
-
-@app.route("/passengers", methods=["POST", "GET"])
-def passengers():
-    if request.method == "GET":
-        return render_template("index8.html", message="PLZ ENTER PASSWORD")
-    password = str(request.form.get("password"))
-    if password == "chris":
-        flights = db.execute("SELECT * FROM passengers").fetchall()
-        return render_template("index11.html", flights=flights)
-    else:
-        return render_template("index8.html", message="WRONG PASSWORD")
-
-@app.route("/holdingroom")
-def holding_room():
-    return render_template("index12.html")
-
-
-
 @app.route("/book", methods=["POST"])
 def book():
     name = request.form.get("name")
+    if name is '':
+        return render_template("index8.html", message="Please enter passenger name.")
     try:
         flight_id = int(request.form.get("flight_id"))
     except ValueError:
@@ -50,5 +30,21 @@ def book():
                {"name": name, "flight_id": flight_id})
     db.commit()
     return render_template("index9.html", message="You have successfully booked your flight!")
+
+@app.route("/flights")
+def display_flights():
+    flights = db.execute("SELECT * FROM flights").fetchall()
+    return render_template("index10.html", flights=flights)
+
+@app.route("/flights/<int:flight_id>")
+def flight(flight_id):
+    flight = db.execute("SELECT * FROM flights WHERE id = :id", {"id": flight_id}).fetchone()
+
+    if flight is None:
+        return render_template("index8.html", message="No such flight.")
+
+    passengers = db.execute("SELECT name FROM passengers WHERE flight_id = :fi", {"fi": flight_id}).fetchall()
+
+    return render_template("index11.html", flight=flight, passengers=passengers)
 
 
