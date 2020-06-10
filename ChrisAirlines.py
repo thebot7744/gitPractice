@@ -1,6 +1,7 @@
 import os
+import requests
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
@@ -47,4 +48,26 @@ def flight(flight_id):
 
     return render_template("index11.html", flight=flight, passengers=passengers)
 
+@app.route("/api/flights/<int:flight_id>")
 
+def flight_api(flight_id):
+    try:
+        id_flight = int(flight_id)
+    except ValueError:
+        return jsonify({"error": "Invalid flight id."}), 422
+
+    flight1 = db.execute('SELECT * FROM flights WHERE id = :id', {"id": id_flight}).fetchone()
+
+    if flight1 is None:
+        return jsonify({"error": "Invalid flight id."}), 422
+
+    passengers = db.execute('SELECT name FROM passengers WHERE flight_id = :fi', {'fi': flight_id}).fetchall()
+    names = []
+    for passenger in passengers:
+        names.append(passenger.name)
+    return jsonify({
+        'origin': flight1.origin,
+        'destination': flight1.destination,
+        'duration': flight1.duration,
+        'passengers': names
+    })
