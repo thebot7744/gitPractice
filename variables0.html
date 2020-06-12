@@ -3,14 +3,22 @@
     <head>
         <script>
 
-            function hello() {
-                alert('Hello!');
-                document.querySelector('h1').innerHTML = 'Welcome!';
+            if (true) {
+                var message = 'Hello!';
             }
 
-            function hello1() {
-                document.querySelector('h1').innerHTML = 'Goodbye!';
+            alert(message);
+
+            if (true) {
+                let message1 = 'Welcome!';
             }
+
+            alert(message1);
+
+            const message2 = 'Hello!';
+            message2 = 'Goodbye';
+
+            alert(message2)
 
         </script>
         <title>Chris Empire</title>
@@ -19,9 +27,6 @@
               crossorigin="anonymous">
     </head>
     <body>
-        <h1>Welcome</h1>
-        <button onclick="hello()">Click here!</button>
-
-        <button onclick="hello1()">Bye!</button>
+        <h1>Hello!</h1>
     </body>
 </html>
