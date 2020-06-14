@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Chris Empire</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('#form').onsubmit = function() {
+                    var name = document.querySelector('#name').value;
+                    if (name === 'Zoey' || name === 'zoey') {
+                        name = 'Doofus'
+                    }
+                    alert(`Hello ${name}!`);
+                };
+            });
+        </script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+              integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <form id="form" class="form-group">
+            <input id="name" autocomplete="off" autofocus placeholder="Name" type="text">
+            <input type="submit" class="form-group">
+        </form>
+    </body>
+</html>
