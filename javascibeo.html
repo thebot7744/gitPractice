@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <title>Chris Empire</title>
         <script>
-
-            function hello() {
-                alert('Hello!');
-                document.querySelector('h1').innerHTML = 'Welcome!';
-            }
-
-            function hello1() {
-                document.querySelector('h1').innerHTML = 'Goodbye!';
+            function func1() {
+                const inputVal = document.querySelector('#color-change').value;
+                if (document.querySelector('#color-change').value.length == 0) {
+                    alert('Plz enter color')
+                } else {
+                    document.querySelector('#hi').style.color = inputVal;
+                }
             }
 
         </script>
-        <title>Chris Empire</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
               integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
               crossorigin="anonymous">
     </head>
     <body>
-        <h1>Welcome</h1>
-        <button onclick="hello()">Click here!</button>
-
-        <button onclick="hello1()">Bye!</button>
+        <h1 id="hi">Change my color!</h1>
+        <form id="form" class="form-group">
+            <input type="text" placeholder="color" id="color-change">
+            <button type='button' onclick="func1();">Submit</button>
+        </form>
     </body>
 </html>
