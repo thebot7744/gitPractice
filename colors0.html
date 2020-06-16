@@ -5,9 +5,11 @@
         <title>Chris Empire</title>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-               document.querySelector('#form').onsubmit = function() {
-                   const inputVal = document.querySelector('#color-change').value;
-                   document.querySelector('#hi').style.color = inputVal;
+               document.querySelector('#color-change').onchange = function() {
+                   document.querySelector('#form').onsubmit = () => {
+                       document.querySelector('#hi').style.color = this.value;
+                       return false;
+                   };
                };
             });
 
@@ -18,7 +20,7 @@
     </head>
     <body>
         <h1 id="hi">Change my color!</h1>
-        <form id="form" class="form-group">
+        <form id="form" class="form-group" onsubmit="return false">
             <input type="text" placeholder="color" id="color-change">
             <input type="submit" class="form-group">
         </form>
