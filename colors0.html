@@ -4,11 +4,19 @@
         <meta charset="UTF-8">
         <title>Chris Empire</title>
         <script>
+
             document.addEventListener('DOMContentLoaded', function() {
                document.querySelector('#color-change').onchange = function() {
                    document.querySelector('#form').onsubmit = () => {
-                       document.querySelector('#hi').style.color = this.value;
-                       return false;
+                       var inputValue = document.getElementById("color-change").value;
+
+                       if (inputValue === '') {
+                           alert('Please enter color.')
+                       } else {
+                           document.querySelector('#hi').style.color = inputValue;
+                           return false;
+                       }
+
                    };
                };
             });
