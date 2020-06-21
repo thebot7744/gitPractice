@@ -2,8 +2,13 @@
 <html lang="en">
     <head>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
 
+            if(!localStorage.getItem('counter')) {
+                localStorage.setItem('counter', 0);
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelector('#counter').innerHTML
                 document.querySelector('button').onclick = count;
             });
 

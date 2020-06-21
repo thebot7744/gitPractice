@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+
+                document.querySelector('#submit').disabled = true;
+
+                document.querySelector('#task').onkeyup = () => {
+                    if (document.querySelector('#task').value.length > 0) {
+                        document.querySelector('#submit').disabled = false;
+                    } else {
+                        document.querySelector('#submit').disabled = true;
+                    }
+                };
+
+                document.querySelector('#new-task').onsubmit = () => {
+
+                    var li = document.createElement('li');
+                    var but = document.createElement("BUTTON");
+                    but.innerHTML = 'Delete';
+
+
+                    // var inner = document.querySelector('#task').value;
+
+
+                    var inner = document.createElement('nobr')
+                    inner.innerHTML = document.querySelector('#task').value;
+                    li.appendChild(inner);
+                    li.appendChild(but);
+                    document.getElementById("tasks").appendChild(li);
+
+
+                   // document.querySelector('#tasks').appendChild(li);
+
+
+                    document.querySelector('#task').value = '';
+                    document.querySelector('#submit').disabled = true;
+                    return false;
+                };
+                // document.getElementById('deleteall').onclick = () => {
+                //    document.getElementById('tasks').innerHTML = '';
+                //   return false;
+                // };
+            });
+
+
+        </script>
+        <title>Chris Empire</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+              integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>Things to Do</h1>
+        <ul id="tasks">
+        </ul>
+
+        <form id="new-task">
+            <input id="task" autocomplete="off" autofocus placeholder="New Todo" type="text">
+            <button id="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <button id="deleteall" class="btn btn-warning">Delete All</button>
+    </body>
+</html>

@@ -2,31 +2,28 @@
 <html lang="en">
     <head>
         <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                setInterval(count, 60000);
+            });
 
-            if (true) {
-                var message = 'Hello!';
+            let counter = 0;
+
+            function count() {
+                    counter++;
+                    document.querySelector('#counter').innerHTML = counter;
             }
-
-            alert(message);
-
-            if (true) {
-                let message1 = 'Welcome!';
-            }
-
-            alert(message1);
-
-            const message2 = 'Hello!';
-            message2 = 'Goodbye';
-
-            alert(message2)
-
         </script>
         <title>Chris Empire</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
               integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
               crossorigin="anonymous">
+        <style>
+            h1 {
+                margin: 30px;
+            }
+        </style>
     </head>
     <body>
-        <h1>Hello!</h1>
+        <h1 id="counter">0</h1>
     </body>
 </html>
