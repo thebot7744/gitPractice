@@ -4,6 +4,8 @@
         <script>
             document.addEventListener('DOMContentLoaded', () => {
 
+
+
                 document.querySelector('#submit').disabled = true;
 
                 document.querySelector('#task').onkeyup = () => {
@@ -15,14 +17,9 @@
                 };
 
                 document.querySelector('#new-task').onsubmit = () => {
-
-                    var li = document.createElement('li');
                     var but = document.createElement("BUTTON");
+                    var li = document.createElement('li');
                     but.innerHTML = 'Delete';
-
-
-                    // var inner = document.querySelector('#task').value;
-
 
                     var inner = document.createElement('nobr')
                     inner.innerHTML = document.querySelector('#task').value;
@@ -32,16 +29,15 @@
 
 
                    // document.querySelector('#tasks').appendChild(li);
-
+                   but.onclick = function() {
+                       this.parentElement.remove()
+                   };
 
                     document.querySelector('#task').value = '';
                     document.querySelector('#submit').disabled = true;
                     return false;
                 };
-                // document.getElementById('deleteall').onclick = () => {
-                //    document.getElementById('tasks').innerHTML = '';
-                //   return false;
-                // };
+
             });
 
 
@@ -60,6 +56,5 @@
             <input id="task" autocomplete="off" autofocus placeholder="New Todo" type="text">
             <button id="submit" class="btn btn-primary">Submit</button>
         </form>
-        <button id="deleteall" class="btn btn-warning">Delete All</button>
     </body>
 </html>
