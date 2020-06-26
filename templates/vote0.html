@@ -1,10 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // connect to socket.io
+                var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+
+                // when connected:
+                socket.on('connect', () => {
+                    // button code
+                    document.querySelectorAll('button').forEach(button => {
+                        button.onclick = function() {
+                            const selection = button.dataset.vote;
+                            socket.emit('submit vote', {'selection': selection});
+                        };
+                    });
+                });
+
+                socket.on('announce vote', data => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `Vote recorded: ${data.selection}`;
+                    document.getElementById('votes').append(li);
+                });
+            });
+        </script>
+        <title>Vote</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+              integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>Donald Trump as President 2020-2024</h1>
+        <ul id="votes"></ul>
+        <hr>
+        <button data-vote="yes" class="btn btn-success">Yessus Dessus</button>
+        <button data-vote="no" class="btn btn-d anger">Never ever ever!!!</button>
+        <button data-vote="maybe" class="btn btn-secondary">I dunno.. Maybe??</button>
+    </body>
 </html>
