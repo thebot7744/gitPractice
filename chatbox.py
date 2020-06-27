@@ -18,12 +18,13 @@ def username():
 
 @socketio.on('submit name')
 def chat_room(data):
-    name = data['username']
-    #return render_template(#something to be determined)
+    user = data['name']
+    comment['name'] = user
+    return render_template('test.html', name=user)
 
 @socketio.on('submit message')
 def send_message(data):
-    comment = data['message']
-    emit('vote totals', name, broadcast=True)
+    message = data['message']
+    emit('vote totals', message, broadcast=True)
 
 

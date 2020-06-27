@@ -7,14 +7,15 @@
             document.addEventListener('DOMContentLoaded', () => {
                 // connect to socket.io
                 var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-                var name = ''
                 // when connected:
                 socket.on('connect', () => {
                     // button code
-                    document.getElementById('username').submit = function() {
+                    document.getElementById('user_name').onsubmit = () => {
                         var name = document.getElementById('name').value;
-                        socket.emit('submit name', {'username': name});
+                        socket.emit('submit name', {'name': name});
+                        alert(name)
                     };
+
                 });
             });
         </script>
@@ -25,8 +26,9 @@
     </head>
     <body>
         <ul id="the-chat"></ul>
-        <form id="username">
+        <form id="user_name">
             <input id="name" autocomplete="off" autofocus placeholder="User name" type="text" class="form-group">
+            <input type="submit" class="form-group">
         </form>
     </body>
 </html>
