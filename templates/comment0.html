@@ -7,16 +7,41 @@
             document.addEventListener('DOMContentLoaded', () => {
                 // connect to socket.io
                 var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-                // when connected:
-                socket.on('connect', () => {
-                    // button code
-                    document.getElementById('user_name').onsubmit = () => {
-                        var name = document.getElementById('name').value;
-                        socket.emit('submit name', {'name': name});
-                        alert(name)
-                    };
 
+                // button code
+                document.querySelector('#submitmessage').disabled = true;
+                document.getElementById('user_name').onsubmit = () => {
+                    var name = document.getElementById('name').value;
+                    socket.emit('submit name', {'name': name});
+                    return false;
+                };
+
+                socket.on('yah', data => {
+                    var done = document.querySelector('h3');
+                    const li = document.createElement('li');
+                    li.innerHTML = `${data.user} has joined the chat.`;
+                    var ul = document.querySelector('#chat');
+                    ul.append(li)
+                    document.querySelector('#submit').disabled = true;
+                    document.querySelector('#submitmessage').disabled = false;
+                    return false;
                 });
+
+                document.querySelector('#user_input').onsubmit = function() {
+                    var message = document.querySelector('#message_input').value;
+                    socket.emit('submit message', {'message': message});
+                    document.querySelector('#message_input').value = '';
+                    return false;
+                }
+
+                socket.on('here is message', data => {
+                    var name = document.getElementById('name').value;
+                    const li = document.createElement('li');
+                    li.innerHTML = `< ${name} > ${data.message}`;
+                    var ul = document.querySelector('#chat');
+                    ul.append(li)
+                });
+
             });
         </script>
         <title>Messages</title>
@@ -28,7 +53,13 @@
         <ul id="the-chat"></ul>
         <form id="user_name">
             <input id="name" autocomplete="off" autofocus placeholder="User name" type="text" class="form-group">
-            <input type="submit" class="form-group">
+            <input type="submit" class="form-group" id="submit">
+        </form>
+        <ul id="chat"></ul>
+        <form id="user_input">
+            <input id="message_input" autocomplete="off" autofocus placeholder="Enter Message"
+                   type="text" class="form-group">
+            <input type="submit" class="form-group" id="submitmessage">
         </form>
     </body>
 </html>
